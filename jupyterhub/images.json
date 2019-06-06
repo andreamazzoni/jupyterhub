@@ -1,0 +1,11 @@
+{
+    "Jupyter Base Notebook": "jupyter/base-notebook:latest",
+    "Jupyter Minimal Notebook": "jupyter/minimal-notebook:latest",
+    "Jupyter R  Notebook": "jupyter/r-notebook:latest",
+    "Jupyter SciPy  Notebook": "jupyter/scipy-notebook:latets",
+    "Jupyter TensorFlow  Notebook": "jupyter/tensorflow-notebook",
+    "Jupyter Data Science  Notebook": "jupyter/datascience-notebook",
+    "Jupyter PySpark  Notebook": "jupyter/pyspark-notebook",
+    "Jupyter PySpark  Notebook": "jupyter/all-spark-notebook",
+    "Test image": "jupyterhub-lab"
+}

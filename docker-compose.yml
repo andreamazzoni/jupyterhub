@@ -1,0 +1,50 @@
+version: '3.5'
+
+services:
+  # Configuration for Hub+Proxy
+  jupyterhub:
+    build: jupyterhub
+    image: jupyterhub-hub
+    container_name: jupyterhub-hub
+    environment:
+      DOCKER_NETWORK_NAME: jupyterhub-network
+      HUB_IP: jupyterhub-hub
+      ADMIN_USERNAME: andrea
+      ADMIN_PASSWORD: andrea
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:localhost"
+    restart: on-failure
+    networks:
+      - jupyterhub-network
+
+  reverse-proxy:
+    image: traefik
+    container_name: jupyterhub-proxy
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - ./reverse-proxy/traefik.toml:/etc/traefik/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - proxy-tmp:/tmp
+    restart: on-failure
+    networks:
+      - jupyterhub-network
+
+  jupyterhub-lab:
+    build: jupyterlab
+    image: jupyterhub-lab
+    container_name: jupyterhub-lab
+    networks:
+      - jupyterhub-network
+    command: echo
+
+networks:
+  jupyterhub-network:
+    name: jupyterhub-network
+
+volumes:
+  proxy-tmp:
