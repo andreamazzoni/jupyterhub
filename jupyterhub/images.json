@@ -6,6 +6,5 @@
     "Jupyter TensorFlow  Notebook": "jupyter/tensorflow-notebook",
     "Jupyter Data Science  Notebook": "jupyter/datascience-notebook",
     "Jupyter PySpark  Notebook": "jupyter/pyspark-notebook",
-    "Jupyter PySpark  Notebook": "jupyter/all-spark-notebook",
-    "Test image": "jupyterhub-lab"
+    "Jupyter PySpark  Notebook": "jupyter/all-spark-notebook"
 }

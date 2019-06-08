@@ -34,14 +34,6 @@ services:
     networks:
       - jupyterhub-network
 
-  jupyterhub-lab:
-    build: jupyterlab
-    image: jupyterhub-lab
-    container_name: jupyterhub-lab
-    networks:
-      - jupyterhub-network
-    command: echo
-
 networks:
   jupyterhub-network:
     name: jupyterhub-network
