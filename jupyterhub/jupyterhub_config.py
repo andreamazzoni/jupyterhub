@@ -10,7 +10,6 @@ c.FirstUseAuthenticator.create_users = False
 ## Set of users that will have admin rights on this JupyterHub.
 c.Authenticator.admin_users = set([os.environ['ADMIN_USERNAME']])
 c.LocalAuthenticator.create_system_users = True
-#c.LocalAuthenticator.add_user_cmd = ['adduser', '-q', '–gecos', '""',"&&","echo USERNAME:USERNAME | chpasswd"]
 
 ## Docker Spawner
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
@@ -19,11 +18,11 @@ c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 # The admin must pull these before they can be used.
 c.DockerSpawner.image_whitelist = json.load(open("images.json"))
 
-#Envs
+# Envs
 c.DockerSpawner.network_name = os.environ['DOCKER_NETWORK_NAME']
 c.JupyterHub.hub_ip = os.environ['HUB_IP']
 
-# delete containers when the stop
+# Delete containers when the stop
 c.DockerSpawner.remove = True
 
 # Other stuff
