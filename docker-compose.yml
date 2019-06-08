@@ -9,8 +9,6 @@ services:
     environment:
       DOCKER_NETWORK_NAME: jupyterhub-network
       HUB_IP: jupyterhub-hub
-      ADMIN_USERNAME: andrea
-      ADMIN_PASSWORD: andrea
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
