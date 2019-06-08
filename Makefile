@@ -7,3 +7,4 @@ run:
 clean:
 	docker-compose down
 	docker-compose rm
+	docker volume rm jupyterhub-proxy-tmp

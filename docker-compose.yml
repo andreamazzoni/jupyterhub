@@ -40,3 +40,4 @@ networks:
 
 volumes:
   proxy-tmp:
+    name: jupyterhub-proxy-tmp
