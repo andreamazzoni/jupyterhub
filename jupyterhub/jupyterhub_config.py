@@ -12,8 +12,20 @@ c.Authenticator.admin_users = set([os.environ['ADMIN_USERNAME']])
 c.LocalAuthenticator.create_system_users = True
 
 ## Docker Spawner
-c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-#c.JupyterHub.spawner_class = DockerImageChooserSpawner
+from dockerspawner import DockerSpawner
+
+class MyDockerSpawner(DockerSpawner):
+
+    def get_env(self):
+        env = super().get_env()
+        env['NB_USER'] = env['JUPYTERHUB_USER']
+        env['JUPYTER_ENABLE_LAB'] = 1
+        return env
+
+c.JupyterHub.spawner_class = MyDockerSpawner
+
+# Need to run container as root to change default user (jovyan) to hub user
+c.DockerSpawner.extra_create_kwargs = {'user' : '0',}
 
 # The admin must pull these before they can be used.
 c.DockerSpawner.image_whitelist = json.load(open("images.json"))
@@ -29,12 +41,9 @@ c.DockerSpawner.remove = True
 c.Spawner.cpu_limit = 1
 c.Spawner.mem_limit = '1G'
 
-# Redirect to JupyterLab, instead of the plain Jupyter notebook
-c.Spawner.default_url = '/lab'
-
 ## Data persistence
 # see https://github.com/jupyterhub/dockerspawner#data-persistence-and-dockerspawner
-notebook_dir = '/home/jovyan'
+notebook_dir = '/home/{username}'
 c.DockerSpawner.notebook_dir = notebook_dir
 c.DockerSpawner.container_name_template = 'jupyterhub-lab-{username}'
 c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
