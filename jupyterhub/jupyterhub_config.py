@@ -43,10 +43,11 @@ c.Spawner.mem_limit = '1G'
 
 ## Data persistence
 # see https://github.com/jupyterhub/dockerspawner#data-persistence-and-dockerspawner
+#notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan'
 notebook_dir = '/home/{username}'
 c.DockerSpawner.notebook_dir = notebook_dir
 c.DockerSpawner.container_name_template = 'jupyterhub-lab-{username}'
-c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': notebook_dir }
+c.DockerSpawner.volumes = { 'jupyterhub-user-{username}': '/home' }
 
 ## Services
 c.JupyterHub.services = [
