@@ -24,6 +24,11 @@ c.JupyterHub.services = [
 ]
 ```
 This spawner also has the possibility to select the image that user want to launch by a selector. You can add (or remove) images simply by edit *jupyterhub/images.json* files. At the moment you can find all the jupyter defaul images describerd here: https://github.com/jupyter/docker-stacks.
+Note that images you want to use has to be available locally, for example:
+```bash
+$ docker pull jupyter/base-notebook:latest
+```
+
 ### Run
 You have to provide:
 - Docker
