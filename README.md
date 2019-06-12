@@ -28,8 +28,11 @@ This spawner also has the possibility to select the image that user want to laun
 You have to provide:
 - Docker
 - Docker Compose
+- Make
 
 You have to execute:
 ```bash
+$ make create-self-signed-certificate
+...
 $ docker-compose up
 ```
