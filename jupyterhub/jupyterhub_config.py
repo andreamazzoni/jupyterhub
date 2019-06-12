@@ -4,8 +4,8 @@ import json
 # User can set their passwords on first login
 c.JupyterHub.authenticator_class = 'firstuseauthenticator.FirstUseAuthenticator'
 
-# Users have to exists (created by admin users) before attempt to login
-c.FirstUseAuthenticator.create_users = False
+# True = any user can create himself, False = user must be created by admins
+c.FirstUseAuthenticator.create_users = True
 
 ## Set of users that will have admin rights on this JupyterHub.
 c.Authenticator.admin_users = set([os.environ['ADMIN_USERNAME']])
